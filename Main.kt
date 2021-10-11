@@ -1,36 +1,39 @@
-//2-es feladat
-
-import kotlin.reflect.typeOf
-
 fun main(args: Array<String>) {
-    //1.feladat
-    println("Exercise 1 -------------------------------")
-    val list1 = listOf("John Smith", "Colleen Hoover", "Karl May")
-    val list1new = list1.map{it->it.func1()}
-    println("$list1 -> $list1new")
+   val date1 = Date()
+   println("The current date:")
+   toString(date1)
 
-    //2.feladat
-    println("\nExercise 2 -------------------------------")
-    val list2 = listOf("apple", "pear", "melon", "strawberry")
-    val mySeparator = '#'
-    println("$list2 -> ${list2.func2(mySeparator)}")
+   println("\nThe list of the invalid dates:")
+   val listDate = mutableListOf<Date>()
+   var i = 0
 
-    //3.feladat
-    println("\nExercise 3 -------------------------------")
-    print("Longest $list2 = ${list2.func3()}")
+   while(i < 10)
+   {
+      var date2 = Date (year = (1500..2030).random(), month = (0..15).random(), day = (0..40).random())
+      if(isValid(date2))
+      {
+         listDate.add(date2)
+         i = i+1
+      }
+      else
+      {
+         toString(date2)
+      }
+   }
+
+   println("\nThe list of the valid dates:")
+   listDate.forEach {
+      toString(it)
+   }
+
+   println("\nThe sorted list:   ASC")
+   listDate.sorted().forEach { toString(it) }
+
+   println("\nThe sorted list:   DESC")
+   listDate.sortedDescending().forEach { toString(it) }
+
+   val dateList = listOf<Date>(listDate[0], listDate[2], listDate[4], listDate[6])
+   dateList.sortedWith(Date)
 }
 
-fun String.func1(): String {
-    val toFind = " "
-    val name1 = this[this.indexOf(toFind) + 1]
-    var name2 = "" + this.first()+name1
-    return name2
-}
 
-fun List<String>.func2(mySeparator: Char): String {
-    return this.joinToString("#")
-}
-
-fun List<String>.func3(): String {
-    return this.first { it.length == this.map { it.length }.maxOrNull() }
-}
