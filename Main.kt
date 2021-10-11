@@ -1,3 +1,5 @@
+//2-es feladat
+
 import kotlin.reflect.typeOf
 
 fun main(args: Array<String>) {
